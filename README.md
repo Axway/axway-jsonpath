@@ -1,10 +1,5 @@
 # Differences from the upstream repo:
-
-* Better interop with other JsonPath libs (including ports to Java): `jp.stringify` now produces properly escaped single quoted `['email@example.com']` string literals.
-* Merged some hanging PRs from original repo.
 * Security updates.
-
-
 # jsonpath
 
 Query JavaScript objects with JSONPath expressions.  Robust / safe JSONPath engine for Node.js.
@@ -20,7 +15,7 @@ var cities = [
   { name: "Rome",   "population": 2870528 }
 ];
 
-var jp = require('@livereach/jsonpath');
+var jp = require('@axway/jsonpath');
 var names = jp.query(cities, '$..name');
 
 // [ "London", "Berlin", "Madrid", "Rome" ]
@@ -30,7 +25,7 @@ var names = jp.query(cities, '$..name');
 
 Install from npm:
 ```bash
-$ npm install @livereach/jsonpath
+$ npm install @axway/jsonpath
 ```
 
 ## JSONPath Syntax
@@ -202,7 +197,7 @@ Script expressions (i.e, `(...)` and `?(...)`) are statically evaluated via [sta
 
 #### Grammar
 
-This project uses a formal BNF [grammar](https://github.com/livereach/jsonpath/blob/master/lib/grammar.js) to parse JSONPath expressions, an attempt at reverse-engineering the intent of the original implementation, which parses via a series of creative regular expressions.  The original regex approach can sometimes be forgiving for better or for worse (e.g., `$['store]` => `$['store']`), and in other cases, can be just plain wrong (e.g. `[` => `$`).
+This project uses a formal BNF [grammar](https://github.com/axway/jsonpath/blob/master/lib/grammar.js) to parse JSONPath expressions, an attempt at reverse-engineering the intent of the original implementation, which parses via a series of creative regular expressions.  The original regex approach can sometimes be forgiving for better or for worse (e.g., `$['store]` => `$['store']`), and in other cases, can be just plain wrong (e.g. `[` => `$`).
 
 #### Other Minor Differences
 
@@ -222,6 +217,10 @@ git push --follow-tags
 npm publish --access=public
 ```
 
+## Changes
+#### 1.3.0
+- Fixed issue with fork [@livereach/jsonpath](https://www.npmjs.com/package/@livereach/jsonpath) that made it vulnerable to (CVE-2021-23358)(https://nvd.nist.gov/vuln/detail/CVE-2021-23358) by updating the vulnerable underscore library.
+- Bumped [static-eval](https://www.npmjs.com/package/static-eval) version to latest(2.1.0).
 ## License
 
 [MIT](LICENSE)
