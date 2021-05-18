@@ -218,6 +218,8 @@ npm publish --access=public
 ```
 
 ## Changes
+#### 1.3.1
+- Fixed incorrect usage of instanceOf when determining if a value is an Array, which wasn't detecting arrays from different contexts.
 #### 1.3.0
 - Fixed issue with fork [@livereach/jsonpath](https://www.npmjs.com/package/@livereach/jsonpath) that made it vulnerable to (CVE-2021-23358)(https://nvd.nist.gov/vuln/detail/CVE-2021-23358) by updating the vulnerable underscore library.
 - Bumped [static-eval](https://www.npmjs.com/package/static-eval) version to latest(2.1.0).
